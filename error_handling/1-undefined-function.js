@@ -9,5 +9,5 @@ function index (req, res) {
   })
 }
 app.get('/', index)
-
+console.log('listening on localhost:3000')
 app.listen(3000)
