@@ -2,10 +2,15 @@ const request = require('request')
 const express = require('express')
 const app = express()
 
-function index (req, res) {
+function index (req, response) {
   request.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand', function (err, res, body) {
-    const json = JSON.parse_oops(body)
-    res.send(json[0].content)
+   try {
+      const json = JSON.parse_oops(body)
+       response.send(json[0].content)
+    } catch (error) {
+        console.log(error)
+        response.send(error.message)
+    } 
   })
 }
 app.get('/', index)
